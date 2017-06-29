@@ -24,6 +24,9 @@ RUN yum-config-manager --disable mysql57-community \
 RUN yum install -y supervisor
 COPY ./supervisord.conf /etc/supervisord.conf
 
+RUN mkdir /docker-entrypoint-initdb.d
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
 VOLUME /var/lib/mysql
 
 EXPOSE 80 3306
